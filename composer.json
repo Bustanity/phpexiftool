@@ -1,5 +1,5 @@
 {
-    "name": "alchemy/phpexiftool",
+    "name": "jukkatawast/phpexiftool",
     "type": "library",
     "description": "Exiftool driver for PHP",
     "keywords": [
