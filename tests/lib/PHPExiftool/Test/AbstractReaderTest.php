@@ -11,9 +11,10 @@
 namespace PHPExiftool\Test;
 
 use PHPExiftool\Reader;
+use Symfony\Component\Process\Process;
 
-abstract class AbstractReaderTest extends \PHPUnit_Framework_TestCase {
-
+abstract class AbstractReaderTest extends \PHPUnit_Framework_TestCase
+{
     /**
      * @var Reader
      */
@@ -33,7 +34,7 @@ abstract class AbstractReaderTest extends \PHPUnit_Framework_TestCase {
             $command = 'rmdir -Rf ' . escapeshellarg($tmpDir);
         }
 
-        $process = new \Symfony\Component\Process\Process($command);
+        $process = Process::fromShellCommandline($command);
         $process->run();
 
         if (!is_dir($tmpDir)) {
@@ -67,7 +68,6 @@ abstract class AbstractReaderTest extends \PHPUnit_Framework_TestCase {
         if (defined('PHP_WINDOWS_VERSION_BUILD')) {
             self::$disableSymLinkTest = true;
         } elseif (!is_link(self::$tmpDir . '/symlink')) {
-
             if (!@symlink($tmpDir2, self::$tmpDir . '/symlink')) {
                 self::$disableSymLinkTest = true;
             }
@@ -442,5 +442,4 @@ abstract class AbstractReaderTest extends \PHPUnit_Framework_TestCase {
     }
 
     abstract protected function getReader();
-
 }
